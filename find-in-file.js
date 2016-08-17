@@ -1,6 +1,8 @@
 var LineByLineReader = require('line-by-line');
 var events = require("events");
 
+var _ocurrences = [];
+
 var findInFile = function (fileName, stringToSearch) {
     var self = this;
 
@@ -50,6 +52,7 @@ findInFile.prototype._initSearch = function () {
     });
 
     lr.on('end', function () {
+        self._ocurrences = ocurrences;
         self.emit('end', ocurrences);
     });
 };

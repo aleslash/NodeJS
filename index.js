@@ -11,16 +11,13 @@ var allOcurrences = [];
 //     console.log(ocurrences.length);
 // });
 
-var find = new findInFile("sample.json", 'http');
-// find.on('found', function (ocurrence) {
-//     console.log(ocurrence);
-// });
+var find = new findInFiles(".", 'http');
 
 find.on('error', function (err) {
     console.log('Error: ' + err);
 });
 
-find.on('end', function (ocurrences) {
+find.on('end', function () {
     console.log('final');
-    console.log(ocurrences.length);
+    console.log(find._files.length);
 });
