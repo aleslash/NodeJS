@@ -49,13 +49,14 @@ findInFiles.prototype._findOccurrencesInFile = function (fileName, stringToSearc
     var find = new findInFile(fileName, stringToSearch);
     var self = this;
     find.on('end', function (occurrences) {
-        self._addOccurrences(occurrences);
+        if(occurrences.length > 0)
+            self._addOccurrences(occurrences);
     });
 }
 
 findInFiles.prototype._addOccurrences = function (occurrences) {
     var self = this;
-    allOccurrences.push(occurrences);
+    allOccurrences = allOccurrences.concat(occurrences);
     if(self._count == this._totalFiles){
         self._end = true;
         self._endOfFiles();
